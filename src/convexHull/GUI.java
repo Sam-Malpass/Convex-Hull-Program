@@ -9,6 +9,9 @@ import java.util.StringTokenizer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -17,10 +20,12 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import javafx.stage.Stage;
 
 public class GUI extends Application
 {
@@ -279,5 +284,24 @@ public class GUI extends Application
 			}
 		});
 		lPane.getChildren().setAll(solveButton, drawButton);
+	}
+	public void start(Stage mainStage) throws Exception 
+	{
+	 	mainStage.setTitle("Convex Hull");
+	    BorderPane bPane = new BorderPane();		
+		bPane.setTop(setMenu());			
+	    Group base = new Group();					
+	    Canvas backdrop = new Canvas( cSize, cSize );	
+	    base.getChildren().add( backdrop );		
+	    gContext = backdrop.getGraphicsContext2D();
+	    bPane.setCenter(base);
+	    rPane = new VBox();
+	    bPane.setRight(rPane);
+	    lPane = new HBox();
+	    createButtons(lPane);
+	    bPane.setBottom(lPane);
+	    Scene mainScene = new Scene(bPane, cSize, cSize); 								 
+	    mainStage.setScene(mainScene);
+	    mainStage.show();
 	}
 }

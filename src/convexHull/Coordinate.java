@@ -4,7 +4,6 @@ public class Coordinate implements Comparable<Coordinate>
 {
 	private int xPosition;
 	private int yPosition;
-	
 	public void setXPosition(int x)
 	{
 		this.xPosition = x;
@@ -13,7 +12,6 @@ public class Coordinate implements Comparable<Coordinate>
 	{
 		return this.xPosition;
 	}
-	
 	public void setYPosition(int y)
 	{
 		this.yPosition = y;
@@ -22,12 +20,10 @@ public class Coordinate implements Comparable<Coordinate>
 	{
 		return this.yPosition;
 	}
-	
 	public String toString() 
 	{
 		return "("+this.xPosition + "," + this.yPosition+")";
 	}
-	
 	public int compareTo(Coordinate c) 
 	{
 		if (this.xPosition == c.xPosition) 
@@ -38,7 +34,5 @@ public class Coordinate implements Comparable<Coordinate>
 		{
 			return this.xPosition - c.xPosition;
 		}
-	}
-	
-	
+	}	
 }

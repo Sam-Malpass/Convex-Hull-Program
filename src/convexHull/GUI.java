@@ -88,7 +88,8 @@ public class GUI extends Application
 		BufferedReader bufferedFileReader = new BufferedReader(new FileReader("Task 1.in")); 	
 		StringTokenizer stringTokenizer = new StringTokenizer(bufferedFileReader.readLine());
 		c1 = new Coordinate[Integer.parseInt(stringTokenizer.nextToken())];
-		for (int ct = 0; ct < c1.length; ct++) {
+		for (int ct = 0; ct < c1.length; ct++) 
+		{
 			c1[ct] = new Coordinate();
 			c1[ct].setXPosition(Integer.parseInt(stringTokenizer.nextToken()));
 			c1[ct].setYPosition(Integer.parseInt(stringTokenizer.nextToken())); 
@@ -97,5 +98,40 @@ public class GUI extends Application
 		bufferedFileReader.close();
 		drawCoordinates(c1);
 		drawPolygon(polygon);
+	}
+	public void task2() throws IOException
+	{
+		Coordinate[] polygon1 = new Coordinate[9]; 
+		BufferedReader bufferedFileReader = new BufferedReader(new FileReader("Task 201.in")); 	
+		StringTokenizer stringTokenizer = new StringTokenizer(bufferedFileReader.readLine());
+		c1 = new Coordinate[Integer.parseInt(stringTokenizer.nextToken())];
+		for (int ct = 0; ct < c1.length; ct++) 
+		{
+			c1[ct] = new Coordinate();
+			c1[ct].setXPosition(Integer.parseInt(stringTokenizer.nextToken())); 
+			c1[ct].setYPosition(Integer.parseInt(stringTokenizer.nextToken()));
+		}
+		polygon1 = Arrays.copyOfRange(c1, 2, c1.length);
+		bufferedFileReader.close();
+		bufferedFileReader = new BufferedReader(new FileReader("Task 202.in"));
+		stringTokenizer = new StringTokenizer(bufferedFileReader.readLine());
+		Coordinate[] polygon2 = new Coordinate[9]; 
+		Coordinate[] polygon3 = new Coordinate[9]; 
+		c2 = new Coordinate[Integer.parseInt(stringTokenizer.nextToken())];
+		for (int ct = 0; ct < c2.length; ct++) 
+		{
+			c2[ct] = new Coordinate();
+			c2[ct].setXPosition(Integer.parseInt(stringTokenizer.nextToken()));
+			c2[ct].setYPosition(Integer.parseInt(stringTokenizer.nextToken())); 
+		}
+		polygon2 = Arrays.copyOfRange(c2, 2, 12);
+		polygon3 = Arrays.copyOfRange(c2, 12, c2.length);
+		bufferedFileReader.close();
+		drawCoordinates(c1);
+		drawCoordinates(c2);
+		drawPolygon(polygon1);
+		drawPolygon(polygon2);
+		drawPolygon(polygon3);
+		hullNo = 2;
 	}
 }

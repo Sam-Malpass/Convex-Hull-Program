@@ -7,9 +7,14 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -133,5 +138,113 @@ public class GUI extends Application
 		drawPolygon(polygon2);
 		drawPolygon(polygon3);
 		hullNo = 2;
+	}
+	MenuBar setMenu() 
+	{
+		MenuBar menuBar = new MenuBar();		
+		Menu mFile = new Menu("File");
+		MenuItem mSave = new MenuItem("Save");
+		MenuItem mLoad = new MenuItem("Load");
+		MenuItem mExit = new MenuItem("Exit");
+		mSave.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    public void handle(ActionEvent actionEvent) 
+		    {
+		        FileIO File = new FileIO();
+		        String Write = new String();
+		        if(c1 == null)
+		        {
+		        	alertWindow("Error", "No co-ordinates are open!");
+		        }
+		        else
+		        {
+		        	Write = Write + c1.length;
+		        	for(int ct = 0; ct < c1.length; ct++)
+		        	{
+		        		Write = Write + " " + c1[ct].getXPosition() + " " + c1[ct].getYPosition();
+		        	}
+		        	if(File.save(Write) == true)
+		        	{
+		        		alertWindow("Success", "Co-ordinates saved successfully!");
+		        	}
+		        	else
+		        	{
+		        		alertWindow("Error", "Co-ordinates failed to save!");
+		        	}
+		        }
+		    }
+		});
+		mLoad.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    public void handle(ActionEvent actionEvent) 
+		    {
+		    	FileIO File = new FileIO();
+		        c1 = File.load();
+		        if(c1 != null)
+		        {
+		        	alertWindow("Success", "Co-ordinates loaded successfully!");
+		        	hullNo = 1;
+		        	drawCoordinates(c1);
+		        }
+		        else
+		        {
+		        	alertWindow("Error", "Co-ordinates failed to load!");
+		        }
+		    }
+		});
+		mExit.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    public void handle(ActionEvent actionEvent) 
+		    {
+		        System.exit(0);						
+		    }
+		});
+		mFile.getItems().addAll(mSave, mLoad, mExit);
+		Menu mCoursework = new Menu("Coursework");
+		MenuItem mTask1 = new MenuItem("Task 1");
+		MenuItem mTask2 = new MenuItem("Task 2");
+		mTask1.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    public void handle(ActionEvent actionEvent) 
+		    {
+		    	try {
+					task1();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    }
+		});
+		mTask2.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    public void handle(ActionEvent actionEvent) 
+		    {
+		    	try {
+					task2();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    }
+		});
+		mCoursework.getItems().addAll(mTask1, mTask2);
+		Menu mHelp = new Menu("Help");
+		MenuItem mInfo = new MenuItem("Information");
+		MenuItem mAbout = new MenuItem("About");
+		mInfo.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    public void handle(ActionEvent actionEvent) 
+		    {
+		        alertWindow("Information", "This is the Convex Hull program, please select a coursework task, or input your own file.");					
+		    }
+		});
+		mAbout.setOnAction(new EventHandler<ActionEvent>() 
+		{
+		    public void handle(ActionEvent actionEvent) 
+		    {
+		        alertWindow("About", "Created by Samuel John Malpass, Student Number 24009788 for CS2AO17");					
+		    }
+		});
+		mHelp.getItems().addAll(mInfo, mAbout);
+		menuBar.getMenus().addAll(mFile, mCoursework, mHelp);
+		return menuBar;					
 	}
 }

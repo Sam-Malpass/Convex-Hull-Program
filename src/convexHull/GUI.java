@@ -300,7 +300,7 @@ public class GUI extends Application
 	    lPane = new HBox();
 	    createButtons(lPane);
 	    bPane.setBottom(lPane);
-	    Scene mainScene = new Scene(bPane, cSize, cSize+49); 								 
+	    Scene mainScene = new Scene(bPane, cSize+100, cSize+49); 								 
 	    mainStage.setScene(mainScene);
 	    mainStage.show();
 	}

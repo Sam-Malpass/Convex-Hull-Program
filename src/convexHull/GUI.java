@@ -55,5 +55,14 @@ public class GUI extends Application
 		}
 		gContext.strokeLine(p[p.length-1].getXPosition(), p[p.length-1].getYPosition(), p[0].getXPosition(), p[0].getYPosition());
 	}
-
+	public String listAll(Coordinate[] c)
+	{
+		String s = "";
+		s = s + "Hull Points: \n";
+		for(int ct = 0; ct < c.length; ct++)
+		{
+			s = s + c[ct].toString() + "\n";
+		}
+		return s;
+	}
 }

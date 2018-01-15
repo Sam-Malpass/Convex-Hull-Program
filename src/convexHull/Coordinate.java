@@ -2,8 +2,13 @@ package convexHull;
 
 public class Coordinate implements Comparable<Coordinate>
 {
-	public int xPosition;
-	public int yPosition;
+	private int xPosition;
+	private int yPosition;
+	
+	public String toString() 
+	{
+		return "("+xPosition + "," + yPosition+")";
+	}
 	
 	public int compareTo(Coordinate c) 
 	{

@@ -3,6 +3,7 @@ package convexHull;
 import javafx.application.Application;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -64,5 +65,14 @@ public class GUI extends Application
 			s = s + c[ct].toString() + "\n";
 		}
 		return s;
+	}
+	public void drawCoordinatesData(Coordinate[] c)
+	{
+		if(hullNo < 2)
+		{
+			rPane.getChildren().clear();
+		}
+		Label l = new Label(listAll(c));
+		rPane.getChildren().add(l);
 	}
 }

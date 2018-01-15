@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -246,5 +247,37 @@ public class GUI extends Application
 		mHelp.getItems().addAll(mInfo, mAbout);
 		menuBar.getMenus().addAll(mFile, mCoursework, mHelp);
 		return menuBar;					
+	}
+	public void createButtons(HBox lPane)
+	{
+		Button solveButton = new Button("Show Hull Points");
+		solveButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+			public void handle(ActionEvent event) 
+			{
+				hull1 = Algorithm.convexHull(c1);
+				drawCoordinatesData(hull1);
+				if(hullNo > 1)
+				{
+					hull2 = Algorithm.convexHull(c2);
+					drawCoordinatesData(hull2);
+				}
+			}
+		});
+		Button drawButton = new Button("Draw Hull");
+		drawButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+			public void handle(ActionEvent event) 
+			{
+				hull1 = Algorithm.convexHull(c1);
+				drawHull(hull1);
+				if(hullNo > 1)
+				{
+					hull2 = Algorithm.convexHull(c2);
+					drawHull(hull2);
+				}
+			}
+		});
+		lPane.getChildren().setAll(solveButton, drawButton);
 	}
 }

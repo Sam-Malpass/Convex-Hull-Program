@@ -35,4 +35,14 @@ public class GUI extends Application
 			gContext.fillArc(c[ct].getXPosition()-2, c[ct].getYPosition()-2, 2, 2, 0, 360, ArcType.ROUND);
 		}
 	}
+	public void drawHull(Coordinate[] h)
+	{
+		gContext.setStroke(Color.GREEN);
+		gContext.setLineWidth(2);
+		for(int ct = 1; ct < h.length; ct++)
+		{
+			gContext.strokeLine(h[ct].getXPosition(), h[ct].getYPosition(), h[ct-1].getXPosition(), h[ct-1].getYPosition());
+		}
+		gContext.strokeLine(h[h.length-1].getXPosition(), h[h.length-1].getYPosition(), h[0].getXPosition(), h[0].getYPosition());
+	}
 }

@@ -45,4 +45,15 @@ public class GUI extends Application
 		}
 		gContext.strokeLine(h[h.length-1].getXPosition(), h[h.length-1].getYPosition(), h[0].getXPosition(), h[0].getYPosition());
 	}
+	public void drawPolygon(Coordinate[] p)
+	{
+		gContext.setStroke(Color.BLACK);
+		gContext.setLineWidth(2);
+		for(int ct = 0; ct < p.length-1; ct++)
+		{
+			gContext.strokeLine(p[ct].getXPosition(), p[ct].getYPosition(), p[ct+1].getXPosition(), p[ct+1].getYPosition());
+		}
+		gContext.strokeLine(p[p.length-1].getXPosition(), p[p.length-1].getYPosition(), p[0].getXPosition(), p[0].getYPosition());
+	}
+
 }

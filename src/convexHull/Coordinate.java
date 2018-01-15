@@ -5,9 +5,27 @@ public class Coordinate implements Comparable<Coordinate>
 	private int xPosition;
 	private int yPosition;
 	
+	public void setXPosition(int x)
+	{
+		this.xPosition = x;
+	}
+	public int getXPosition()
+	{
+		return this.xPosition;
+	}
+	
+	public void setYPosition(int y)
+	{
+		this.yPosition = y;
+	}
+	public int getYPosition()
+	{
+		return this.yPosition;
+	}
+	
 	public String toString() 
 	{
-		return "("+xPosition + "," + yPosition+")";
+		return "("+this.xPosition + "," + this.yPosition+")";
 	}
 	
 	public int compareTo(Coordinate c) 

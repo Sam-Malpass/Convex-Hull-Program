@@ -1,5 +1,11 @@
 package convexHull;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
 import javafx.application.Application;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -74,5 +80,22 @@ public class GUI extends Application
 		}
 		Label l = new Label(listAll(c));
 		rPane.getChildren().add(l);
+	}
+	public void task1() throws IOException
+	{
+		hullNo = 1;
+		Coordinate[] polygon = new Coordinate[9]; 
+		BufferedReader bufferedFileReader = new BufferedReader(new FileReader("Task 1.in")); 	
+		StringTokenizer stringTokenizer = new StringTokenizer(bufferedFileReader.readLine());
+		c1 = new Coordinate[Integer.parseInt(stringTokenizer.nextToken())];
+		for (int ct = 0; ct < c1.length; ct++) {
+			c1[ct] = new Coordinate();
+			c1[ct].setXPosition(Integer.parseInt(stringTokenizer.nextToken()));
+			c1[ct].setYPosition(Integer.parseInt(stringTokenizer.nextToken())); 
+		}
+		polygon = Arrays.copyOfRange(c1, 2, c1.length);
+		bufferedFileReader.close();
+		drawCoordinates(c1);
+		drawPolygon(polygon);
 	}
 }

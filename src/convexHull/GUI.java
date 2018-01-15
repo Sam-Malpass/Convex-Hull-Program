@@ -6,6 +6,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
 
 public class GUI extends Application
 {
@@ -22,5 +24,15 @@ public class GUI extends Application
 	    alert.setHeaderText(null);
 	    alert.setContentText(contentStr);
 	    alert.showAndWait();
+	}
+	public void drawCoordinates(Coordinate[] c)
+	{
+		gContext.setFill(Color.WHITE);
+		gContext.fillRect(0, 0, cSize, cSize);
+		for(int ct = 0; ct < c.length; ct++)
+		{
+			gContext.setFill(Color.BLACK);
+			gContext.fillArc(c[ct].getXPosition()-2, c[ct].getYPosition()-2, 2, 2, 0, 360, ArcType.ROUND);
+		}
 	}
 }

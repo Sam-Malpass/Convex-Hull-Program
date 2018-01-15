@@ -304,4 +304,8 @@ public class GUI extends Application
 	    mainStage.setScene(mainScene);
 	    mainStage.show();
 	}
+	public static void main(String[] args) 
+	{
+		Application.launch(args);
+	}
 }
